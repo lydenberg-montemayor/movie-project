@@ -9,9 +9,46 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="container movies-container">
 
-    </header>
+    <div class="page-wrapper">
+
+        <header class="container">
+            <h1>Our favorites</h1>
+        </header>
+
+        <main class="container ourFavorites">
+            <div class="row">
+                <div class="col movies-container">
+                </div>
+            </div>
+        </main>
+
+        <section class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Movies from TMDB</h3>
+                    <form action="" method="get">
+                        <label class="search-bar">
+                            <input
+                                    class="search-input"
+                                    type="text"
+                                    placeholder="search"
+                                    name="search"
+                                    id="search"
+                            />
+                            <button type="submit" class="searchButton">
+                                search for movies!
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <div class="col tmdb-movies-container">
+
+                </div>
+            </div>
+        </section>
+    </div>
+
 
     <section class="container">
         <button type="button" class="add-movie">add movie</button>
