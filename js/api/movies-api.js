@@ -1,3 +1,6 @@
+
+
+
 export const postMovie = async (movie) => {
 
     const newMovie = {
@@ -52,7 +55,6 @@ export const deleteMovie = async (id) => {
     const data = await response.json();
     return data;
 }
-
 
 export const getMovies = async () => {
     const url = "http://localhost:3000/movies";

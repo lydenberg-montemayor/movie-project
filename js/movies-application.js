@@ -31,6 +31,7 @@ const renderTMDBMovie = (movie) => {
     const movieDiv = document.createElement("div");
     movieDiv.classList.add("movie");
     movieDiv.innerHTML = `
+    <img src="${movie.thumbnail}" alt="movie-thumbnail" />
     <h3>${movie.title}</h3>
     <p>${movie.genre}</p>
     <p>${movie.vote_average}</p>
