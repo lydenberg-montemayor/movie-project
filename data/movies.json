@@ -2,8 +2,8 @@
   "movies": [
     {
       "id": 1,
-      "title": "Shrek",
-      "rating": 5
+      "title": "space balls",
+      "rating": "10"
     }
   ]
 }
