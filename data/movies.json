@@ -1,11 +1,12 @@
 {
   "movies": [
     {
-      "title": "casper",
-      "genre": "classic",
-      "rating": "2",
-      "overview": "a story about a kid who died and couldnt get over it",
-      "year": "1990",
+      "poster_path": "/2ah8fNJFZVU3vcXhU5xfAYi2eym.jpg",
+      "title": "Casper",
+      "genre": "Comedy",
+      "rating": "8",
+      "overview": "Its about a kid who died and haunts other kids",
+      "year": "1995",
       "id": 2
     }
   ]
