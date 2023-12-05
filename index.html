@@ -9,13 +9,89 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="container movies-container">
 
-    </header>
+    <div class="page-wrapper">
 
-    <section class="container">
-        <button type="button" class="add-movie">add movie</button>
-    </section>
+        <header class="container">
+            <h1>Our favorites</h1>
+        </header>
+
+        <main class="container ourFavorites">
+            <div class="row">
+                <div class="col movies-container">
+                </div>
+            </div>
+        </main>
+
+        <section class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Movies from TMDB</h3>
+                    <form action="" method="get">
+                        <label for="action">Action</label>
+                            <input type="radio" name="genre" id="action" value="action">
+                        <label for="comedy">Science Fiction</label>
+                            <input type="radio" name="genre" id="sci-fi" value="science fiction">
+                        <label for="romance">Drama</label>
+                            <input type="radio" name="genre" id="drama" value="drama">
+                        <label for="horror">Horror</label>
+                            <input type="radio" name="genre" id="horror" value="horror">
+                        <label for="animation">Animation</label>
+                            <input type="radio" name="genre" id="animation" value="animation">
+                        <label class="search-bar">
+                            <input
+                                    class="search-input"
+                                    type="text"
+                                    placeholder="search"
+                                    name="search"
+                                    id="search"
+                            />
+                            <button type="submit" class="searchButton">
+                                search for movies!
+                            </button>
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="row tmdb-movies-container">
+
+            </div>
+        </section>
+
+        <section class="container modal">
+
+            <div class="row">
+                <div class="col">
+                    <div class="modal-bg"></div>
+                    <form action="" method="get" class="movie-form">
+                        <label for="title">title</label>
+                        <input type="text" name="title" id="title" placeholder="input a movie title">
+                        <label for="genre">genre</label>
+                        <input type="text" name="genre" id="genre" placeholder="input a movie genre">
+                        <label for="year">year</label>
+                        <input type="text" name="year" id="year" placeholder="input a movie year">
+                        <label for="rating">rating</label>
+                        <input type="text" name="rating" id="rating" placeholder="input a movie rating">
+                        <label for="overview">overview</label>
+                        <input type="text" name="overview" id="overview" placeholder="input a movie overview">
+                        <button type="button" class="create-movie">add movie to list</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="prompt-add-movie">add movie</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
     <script type="module" src="./js/movies-application.js"></script>
 </body>
 </html>
