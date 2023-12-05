@@ -1,9 +1,12 @@
 {
   "movies": [
     {
-      "id": 1,
-      "title": "space balls",
-      "rating": "10"
+      "title": "casper",
+      "genre": "classic",
+      "rating": "2",
+      "overview": "a story about a kid who died and couldnt get over it",
+      "year": "1990",
+      "id": 2
     }
   ]
 }

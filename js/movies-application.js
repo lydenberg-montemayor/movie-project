@@ -11,7 +11,10 @@ const renderFavoriteMovies = async () => {
         movieDiv.classList.add("movie");
         movieDiv.innerHTML = `
         <h3>${movie.title}</h3>
+        <p>${movie.genre}</p>
         <p>${movie.rating}</p>
+        <p>${movie.overview}</p>
+        <p>${movie.year}</p>
         <button class="edit-movie" data-id="${movie.id}">Edit</button>
         <button class="delete-movie" data-id="${movie.id}">Delete</button>
         `;
@@ -29,13 +32,13 @@ const renderFavoriteMovies = async () => {
 const renderTMDBMovie = (movie) => {
     const moviesContainer = document.querySelector(".tmdb-movies-container");
     const movieDiv = document.createElement("div");
-    movieDiv.classList.add("movie");
+    movieDiv.classList.add("movie", `col-3`, `d-flex`, `flex-column`);
     movieDiv.innerHTML = `
-    <img src="${movie.thumbnail}" alt="movie-thumbnail" />
+    <img src="${movie.images.posters[0].file_path}" alt="movie-thumbnail" />
     <h3>${movie.title}</h3>
-    <p>${movie.genre}</p>
-    <p>${movie.vote_average}</p>
-    <p>${movie.overview}</p>
+    <p>genre: ${movie.genre}</p>
+    <p>vote average: ${movie.vote_average}</p>
+    <p>summary: ${movie.overview}</p>
     <button class="add-favorite-movie">Add to Favorites</button>
     `;
     const favBtn = movieDiv.querySelector(".add-favorite-movie");
@@ -85,6 +88,19 @@ const updateMovies = (movies) => {
     const searchInput = document.querySelector(".search-input");
     const searchValue = searchInput.value.toLowerCase();
     let movieResults = movies;
+    const movieGenre = document.querySelector(
+        `input[name="genre"]:checked`
+    ).value;
+    movieResults = movieResults.filter((movie) => {
+        if(!movieGenre){
+            return true;
+        }
+        if (movie.genre.toLowerCase().includes(movieGenre)){
+            return true;
+        } else {
+            return false;
+        }
+    });
     movieResults = movieResults.filter((movie) => {
         if(!searchValue){
             return true;
@@ -97,21 +113,43 @@ const updateMovies = (movies) => {
     });
     renderTMDBMovies(movieResults);
 }
+const handleCreateMovieBtn = async (event) => {
+    event.preventDefault();
+    const title = document.querySelector("#title").value;
+    const genre = document.querySelector("#genre").value;
+    const rating = document.querySelector("#rating").value;
+    const overview = document.querySelector("#overview").value;
+    const year = document.querySelector("#year").value;
+    await postMovie({
+        title,
+        genre,
+        rating,
+        overview,
+        year,
+    });
+    await renderFavoriteMovies();
+}
 
 (async()=>{
+    // loading showing default
     const tmdbMovies = await getTMDBMovies();
     await renderFavoriteMovies();
     console.log("getTMDBMovies() => ", tmdbMovies);
     renderTMDBMovies(tmdbMovies);
+    /// hide the loading screen
+    const movieForm = document.querySelector(".container.modal");
 
-    document.querySelector(".add-movie").addEventListener("click", async () => {
-        const title = prompt("Enter a title");
-        const rating = prompt("Enter a rating");
-        await postMovie({
-            title,
-            rating,
-        });
-        await renderFavoriteMovies();
+    const createMovieBtn = document.querySelector(".create-movie");
+    createMovieBtn.addEventListener("click", (event) => {
+        handleCreateMovieBtn(event);
+        movieForm.classList.toggle("active");
+    });
+
+    document.querySelector(".prompt-add-movie").addEventListener("click", async () => {
+        movieForm.classList.toggle("active");
+    });
+    document.querySelector(".modal-bg").addEventListener("click", async () => {
+        movieForm.classList.toggle("active");
     });
 
     const searchButton = document.querySelector(`.searchButton`);

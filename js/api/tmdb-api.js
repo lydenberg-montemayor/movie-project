@@ -11,12 +11,12 @@ export const getTMDBMovies = async () => {
     const response = await fetch(url, options);
     const data = await response.json();
     const genres = await getTMDBGenres();
-    const thumbnail = await getTMDBThumbnail(data.results[0]);
+    const images = await getTMDBImages(data.results[0].id);
     const movies = data.results.map((movie) => {
         return {
             ...movie,
             genre: genres.genres.find((genre) => genre.id === movie.genre_ids[0]).name,
-            thumbnail: thumbnail,
+            images
         }
     });
     return movies;
@@ -48,8 +48,8 @@ const getTMDBGenres = async () => {
     return data;
 }
 
-const getTMDBThumbnail = async (movie) => {
-    const url = `https://api.themoviedb.org/3/movie/${movie.id}/images`;
+const getTMDBImages = async (movieId) => {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${keys.TMDB}&language=en-US&include_image_language=en,null`;
     const options = {
         method: "GET",
         headers: {
