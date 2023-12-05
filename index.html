@@ -12,22 +12,23 @@
 
     <div class="page-wrapper">
 
-        <header class="container">
-            <h1>Our favorites</h1>
+        <header class="container favCont">
+            <h1 class="headerH1">favorites</h1>
         </header>
 
-        <main class="container ourFavorites">
-            <div class="row">
-                <div class="col movies-container">
-                </div>
+        <main class="container ourFavorites mb-4">
+            <div class="row movies-container">
+
             </div>
         </main>
 
-        <section class="container">
+        <section class="container mb-2 filterMovies">
             <div class="row">
-                <div class="col">
-                    <h3>Movies from TMDB</h3>
-                    <form action="" method="get">
+                <div class="col text-center">
+                    <h3 class="TMDBheader">Movies from TMDB</h3>
+                    <form action="" method="get" class="d-flex gap-2 justify-content-center align-items-center">
+                        <label for="all">All</label>
+                            <input type="radio" checked="checked" name="genre" id="all" value="all">
                         <label for="action">Action</label>
                             <input type="radio" name="genre" id="action" value="action">
                         <label for="sci-fi">Science Fiction</label>
@@ -54,7 +55,8 @@
                 </div>
             </div>
         </section>
-        <section class="container">
+
+        <section class="container mb-3">
             <div class="row tmdb-movies-container">
 
             </div>
@@ -82,10 +84,18 @@
             </div>
         </section>
 
-        <section class="container">
+        <section class="container addMovieSec">
             <div class="row">
                 <div class="col">
                     <button type="button" class="prompt-add-movie">add movie</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="container-fluid loadingScreen" id="loadingScreen">
+            <div class="row">
+                <div class="col-12 d-flex charBox">
+                    <img id="loadingCharacter" class="" src="./kenney_toon-characters-1/Robot/PNG/Poses%20HD/character_robot_walk0.png" alt="" >
                 </div>
             </div>
         </section>

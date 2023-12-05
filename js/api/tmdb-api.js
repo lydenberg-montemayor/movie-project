@@ -35,6 +35,28 @@ export const getTMDBMovie = async (id) => {
     return data;
 }
 
+export const searchTMDBMovies = async (query) => {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB}&language=en-US&page=1&include_adult=false&query=${query}`;
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const genres = await getTMDBGenres();
+    const images = await getTMDBImages(data.results[0].id);
+    const movies = data.results.map((movie) => {
+        return {
+            ...movie,
+            genre: genres.genres.find((genre) => genre.id === movie.genre_ids[0]).name,
+            images
+        }
+    });
+    return movies;
+}
+
 const getTMDBGenres = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${keys.TMDB}&language=en-US`;
     const options = {
